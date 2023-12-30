@@ -1,7 +1,9 @@
 """tree implementation"""
 
+
 class Node:
     """tree node"""
+
     def __init__(self, value) -> None:
         self.left = None
         self.right = None
@@ -10,6 +12,7 @@ class Node:
 
 class BinaryTree:
     """tree data structure implementation"""
+
     def __init__(self) -> None:
         self.root = None
 
@@ -52,6 +55,38 @@ class BinaryTree:
             self.inorder_traversal(node.right)
             print(f"{node.value}", end=" ")
 
+    def levelorder_traversal(self, node: Node):
+        """travel binary tree with BFS approach"""
+        if not node:
+            return
+
+        queue = []
+        queue.append(node)
+        while len(queue) > 0:
+            node = queue.pop(0)
+            print(node.value, end=" ")
+
+            if node.left is not None:
+                queue.append(node.left)
+
+            if node.right is not None:
+                queue.append(node.right)
+
+    def reversed_levelorder_traversal(self, node: Node):
+        """travel binary tree with BFS approach in reverse order"""
+        if not node:
+            return []
+        result = []
+        queue = [node]
+        while queue:
+            current = queue.pop(0)
+            result.insert(0, current.value)
+            if current.right:
+                queue.append(current.right)
+            if current.left:
+                queue.append(current.left)
+        return result            
+
 
 t = BinaryTree()
 t.insert(1)
@@ -69,4 +104,14 @@ print("")
 
 print("postorder:")
 t.postorder_traversal(t.root)
+print("")
+
+print("levelorder:")
+t.levelorder_traversal(t.root)
+print("")
+
+
+print("reversed levelorder:")
+result = t.reversed_levelorder_traversal(t.root)
+print(*result)
 print("")
