@@ -70,7 +70,7 @@ def print_order(words):
                 graph.add_edge(u, v)
                 break
             j += 1
-    
+    # example values in this graph [0,3], [0], [2], []
     if graph.check_cycle():
         print("Valid order is not possible")
     else:
