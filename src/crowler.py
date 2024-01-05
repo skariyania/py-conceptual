@@ -30,7 +30,7 @@ def crawl_page(url):
 def crawl_host(host, urls):
     threads = []
     for url in urls:
-        while threading.active_count() >= 100 or threading.active_count(host) >= 5:
+        while threading.active_count() >= 100 or len(host) >= 5:
             pass  # Wait if the thread limit is reached
 
         thread = threading.Thread(target=crawl_page, args=(url,))
